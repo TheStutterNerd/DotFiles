@@ -1,0 +1,320 @@
+## // MARK : Colours
+####################
+set_from_resource	  $color15_i3wmthemer	    color15
+set_from_resource	  $color14_i3wmthemer	    color14
+set_from_resource	  $color13_i3wmthemer	    color13
+set_from_resource	  $color12_i3wmthemer	    color12
+set_from_resource	  $color11_i3wmthemer	    color11
+set_from_resource	  $color10_i3wmthemer	    color10
+set_from_resource	  $color09_i3wmthemer		  color9
+set_from_resource	  $color08_i3wmthemer		  color8
+set_from_resource	  $color07_i3wmthemer		  color7
+set_from_resource 	$color06_i3wmthemer		  color6
+set_from_resource 	$color05_i3wmthemer 	    color5
+set_from_resource 	$color04_i3wmthemer 	    color4
+set_from_resource 	$color03_i3wmthemer 	    color3
+set_from_resource 	$color02_i3wmthemer 	    color2
+set_from_resource 	$color01_i3wmthemer 	    color1
+set_from_resource	  $color00_i3wmthemer		  color0
+set_from_resource	  $foreground_i3wmthemer	foreground
+set_from_resource	  $background_i3wmthemer	background
+set $red #ff0000
+set $white #ffffff
+set $black #000000
+set $purpleblue #4821c6
+
+## // MARK : Border / Focus
+############################
+for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] focus
+
+# Border colour when a program is in focus
+client.focused	#ca15ea #ca15ea #ca15ea #ca15ea #ca15ea
+client.unfocused #4821c6 #4821c6 #4821c6 #4821c6 #4821c6
+client.focused_inactive #182cbf #182cbf #182cbf #182cbf #182cbf
+
+## // MARK : Font
+################# 	- Font for window titles. Will also be used by the bar unless a different font is used in the bar {} block below.
+font pango:monospace 8.5
+
+## // MARK : Modifier Keys (Win, Alt, Ctrl)
+###########################################							
+#$mod = Alt, $sup = Windows
+set $mod Mod1
+set $sup Mod4
+
+## // MARK : Variables (jkl; + arrows)
+######################################
+set $up k
+set $down j
+set $left h
+set $right l
+
+## // MARK : Shortcuts / Hotkeys / Bindings
+###########################################	
+# Use Mouse+Mod1 to drag floating windows to their wanted position
+floating_modifier $sup 
+# start a terminal
+bindsym $sup+Return exec x-terminal-emulator
+
+# kill focused window
+bindsym $sup+Shift+q kill
+
+# start dmenu (a program launcher)
+bindsym $sup+r exec --no-startup-id rofi -show run
+bindsym $sup+d exec --no-startup-id i3-dmenu-desktop
+
+# change focus
+bindsym $sup+$left focus left
+bindsym $sup+$down focus down
+bindsym $sup+$up focus up
+bindsym $sup+$right focus right
+# alternatively, you can use the cursor keys:
+bindsym $sup+Left focus left
+bindsym $sup+Down focus down
+bindsym $sup+Up focus up
+bindsym $sup+Right focus right
+# move focused window
+bindsym $sup+Shift+$left move left
+bindsym $sup+Shift+$down move down
+bindsym $sup+Shift+$up move up
+bindsym $sup+Shift+$right move right
+# alternatively, you can use the cursor keys:
+bindsym $sup+Shift+Left move left
+bindsym $sup+Shift+Down move down
+bindsym $sup+Shift+Up move up
+bindsym $sup+Shift+Right move right
+
+## // MARK : Split Windows / Layout / Toggle Tiling / Scratchpad
+##########################################################
+# Split toggle
+bindsym $sup+t split toggle
+# split in horizontal orientation
+bindsym $sup+g split h
+# split in vertical orientation
+bindsym $sup+v split v
+# enter fullscreen mode for the focused container
+bindsym $sup+f fullscreen toggle
+# change container layout (stacked, tabbed, toggle split)
+bindsym $sup+s layout stacking
+bindsym $sup+w layout tabbed
+bindsym $sup+e layout toggle split
+# toggle tiling / floating
+bindsym $sup+Shift+space floating toggle
+# change focus between tiling / floating windows
+bindsym $sup+space focus mode_toggle
+# focus the parent container ## EXAMPLE: bindsym $sup+a focus parent
+# focus the child container ## EXAMPLE: bindsym $sup+d focus child
+# Move the currently focused window to the scratchpad
+bindsym $sup+Shift+minus move scratchpad
+# Show the next scratchpad window or hide the focused scratchpad window. If there are multiple scratchpad windows, this command cycles through them.
+bindsym $sup+minus scratchpad show
+
+## // MARK : Workspaces / Auto Move
+#######################
+# AUTO MOVE TO WORKSPACE
+assign [class="mpv"] 9
+assign [class="vlc"] 9
+# Define names for default workspaces for which we configure key bindings later on. We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+# switch to workspace
+bindsym $sup+1 workspace $ws1
+bindsym $sup+2 workspace $ws2
+bindsym $sup+3 workspace $ws3
+bindsym $sup+4 workspace $ws4
+bindsym $sup+5 workspace $ws5
+bindsym $sup+6 workspace $ws6
+bindsym $sup+7 workspace $ws7
+bindsym $sup+8 workspace $ws8
+bindsym $sup+9 workspace $ws9
+bindsym $sup+0 workspace $ws10
+# move focused container to workspace
+bindsym $sup+Shift+1 move container to workspace $ws1
+bindsym $sup+Shift+2 move container to workspace $ws2
+bindsym $sup+Shift+3 move container to workspace $ws3
+bindsym $sup+Shift+4 move container to workspace $ws4
+bindsym $sup+Shift+5 move container to workspace $ws5
+bindsym $sup+Shift+6 move container to workspace $ws6
+bindsym $sup+Shift+7 move container to workspace $ws7
+bindsym $sup+Shift+8 move container to workspace $ws8
+bindsym $sup+Shift+9 move container to workspace $ws9
+bindsym $sup+Shift+0 move container to workspace $ws10
+# Rename Workspace W/ Input
+bindsym $mod+Shift+F2 exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
+
+## // MARK : i3 Reload / Restart / Exit
+###################################
+# reload the configuration file
+bindsym $sup+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $sup+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $sup+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+## // MARK : Mod + Ctrl / i3 Gaps
+###############################
+bindsym $sup+Ctrl+plus gaps inner current minus 10
+bindsym $sup+Ctrl+minus gaps inner current plus 10
+bindsym $sup+Ctrl+Shift+plus gaps outer current minus 5
+bindsym $sup+Ctrl+Shift+minus gaps outer current plus 5
+#sets outer gap to 0 [NO OUTER GAP]
+bindsym $sup+Shift+Ctrl+0 gaps outer all set 0
+#sets all gaps to 0 [NO GAPS AT ALL]
+bindsym $sup+Ctrl+0 gaps inner current set 0
+bindsym $sup+Ctrl+bracketleft gaps inner current set 10
+bindsym $sup+Ctrl+bracketright gaps inner current set 20
+# sets all gaps to specific size
+bindsym $sup+Ctrl+Shift+bracketleft gaps outer all set 30
+bindsym $sup+Ctrl+Shift+bracketright gaps outer all set 60
+
+
+## // MARK : StartUp Programs / Backgrounds / i3 Gaps / Splashtop
+# gaps inner|outer current|all set|plus|minus <px> 		# Examples			#gaps inner all set 10			#gaps outer current plus 5
+# Sets gaps at the start of i3
+gaps inner 20
+gaps outer 0
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id compton
+exec_always --no-startup-id fusuma
+exec --no-startup-id synclient VertScroll=-79 synclient HorizScroll=-79 synclient VertScrollDelta=-111 synclient HorizScrollDelta=-111
+exec xrdb ~/.Xresources
+# Restores the previous background		#exec --no-startup-id nitrogen --restore
+# -R restores the last colorscheme that was in use.
+exec wal -R
+# Auto starts splashtop
+exec sleep 10; "/home/tsn/Scripts/runSplashtop.sh" 
+bindsym $mod+m exec "/home/tsn/.screenlayout/DualMonLandscape.sh"
+#Starts splashtop
+bindsym $sup+Ctrl+s exec "/home/tsn/Scripts/runSplashtop.sh" 
+#disable caps lock switch
+exec xmodmap -e "clear lock" 
+#set caps_lock as escape
+exec xmodmap -e "keysym Caps_Lock = Escape" 
+
+## // MARK : Volume
+###################
+bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume @DEFAULT_SINK@ +5%"
+bindsym XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+bindsym XF86AudioMute exec "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+#bindsym XF86AudioMute        exec --no-startup-id "amixer -q set Master toggle"
+#bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -q set Master 5%+ unmute"
+#bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -q set Master 5%- unmute"
+
+## // MARK : App Shortcuts/Scripts
+##################################
+bindsym $sup+Ctrl+o exec "/home/tsn/Scripts/switchto.sh opera"
+bindsym $sup+Ctrl+d exec "/home/tsn/Scripts/switchto.sh discord" 
+bindsym $sup+Ctrl+a exec "/home/tsn/Scripts/switchto.sh java" 
+bindsym $sup+Ctrl+c exec "/home/tsn/Scripts/switchto.sh code"                                                                                                    
+bindsym $sup+Ctrl+v exec "/home/tsn/Scripts/switchto.sh vivaldi"
+bindsym $sup+Ctrl+f exec "/home/tsn/Scripts/switchto.sh firefox"
+bindsym $sup+Ctrl+q exec "qutebrowser"
+
+bindsym Shift+XF86LaunchB exec sudo emoji-keyboard 
+# Search through emoji's
+bindsym XF86LaunchA exec emoji-keyboard -s
+# Toggle emoji-keyboard popup
+bindsym XF86LaunchB exec emoji-keyboard -k
+# ToDo List for dmenu/rofi
+bindsym $mod+t exec "/home/tsn/Scripts/todo.sh"
+
+## // MARK : Resizing Windows / Monitor Brightness
+##################################################
+bindsym $sup+Ctrl+Left resize shrink width 5 px or 5 ppt
+bindsym $sup+Ctrl+Down resize grow height 5 px or 5 ppt
+bindsym $sup+Ctrl+Up resize shrink height 5 px or 5 ppt
+bindsym $sup+Ctrl+Right resize grow width 5 px or 5 ppt
+# Resize FASTER
+bindsym $sup+Ctrl+Shift+Left resize shrink width 20 px or 20 ppt
+bindsym $sup+Ctrl+Shift+Down resize grow height 20 px or 20 ppt
+bindsym $sup+Ctrl+Shift+Up resize shrink height 20 px or 20 ppt
+bindsym $sup+Ctrl+Shift+Right resize grow width 20 px or 20 ppt
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec light -A 1 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 1 # decrease screen brightness
+#bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+#bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+## // MARK : Resolution / DPI
+##########################################
+# XRANDR EXAMPLE:							#exec --no-startup-id xrandr --output OUTPUT --mode MODE
+# Makes the DPI 125 so the text is BIGGER+
+exec xrandr --dpi 125
+exec xrandr -s 1920x1200; exec xrandr --dpi 125;  restart; wal -R
+bindsym $mod+Escape exec wal -R
+# MAKES THE RESOLUTION 1920x1200				#exec xrandr -s 1920x1200
+bindsym $mod+F1 exec xrandr -s 2560x1600; exec xrandr --dpi 125; restart; wal -R
+bindsym $mod+F2 exec xrandr -s 1920x1200; exec xrandr --dpi 125; restart; wal -R
+
+# Changes the DPI (Text Size)
+mode "DPI" {
+	bindsym 1 exec xrandr --dpi 100; restart
+	bindsym 2 exec xrandr --dpi 125; restart
+	bindsym 3 exec xrandr --dpi 150; restart
+	bindsym 4 exec xrandr --dpi 300; restart
+
+# Returns back to the default profile
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+d mode "default"
+
+        bindsym r mode "Resolution"
+}
+
+# Change Resolution
+mode "Resolution" {
+	bindsym 1 exec xrandr -s 2560x1600
+	bindsym 2 exec xrandr -s 1920x1200
+	bindsym 3 exec xrandr -s 1920x1080
+	bindsym 4 exec xrandr -s 1600x1200
+	bindsym 5 exec xrandr -s 1360x768
+
+	# Returns back to the default profile
+	bindsym Return mode "default"
+    	bindsym Escape mode "default"
+    	bindsym $mod+r mode "default"
+
+    	bindsym d mode "DPI"
+}
+
+# Sets the DPI to what fits best- mainly for use with my S8 and remote software
+mode "DPI & Resolution" {
+	bindsym 1 exec xrandr --dpi 125; exec xrandr -s 2560x1600; restart
+	bindsym 2 exec xrandr --dpi 125; exec xrandr -s 1920x1200; restart
+	bindsym 3 exec xrandr --dpi 150; exec restart
+	bindsym 4 exec xrandr --dpi 300; exec restart
+    bindsym 0 restart
+
+# Returns back to the default profile
+    	bindsym Return mode "default"
+    	bindsym Escape mode "default"
+    	bindsym $mod+d mode "default"
+
+    	bindsym d mode "DPI"
+    	bindsym r mode "Resolution"
+}
+bindsym $mod+d mode "DPI & Resolution"
+
+mode "redshift" {
+    	bindsym 0 exec "killall redshift; redshift -rO 6500"
+	bindsym 1 exec "redshift -rl 53.546934:-2.429437"
+
+# Returns back to the default profile
+    	bindsym Return mode "default"
+    	bindsym Escape mode "default"
+    	bindsym $mod+d mode "default"
+}
+bindsym $mod+l mode "redshift"
+
+## MARK : i3lock
+################
+bindsym $mod+x exec "/home/tsn/Scripts/i3lock_.sh"; exec systemctl suspend
